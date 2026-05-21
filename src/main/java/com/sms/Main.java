@@ -30,7 +30,7 @@ public class Main {
             sc.nextLine();
             switch (choice) {
                 case 1: {
-                    System.out.println("\n📋  All Students:");
+                    System.out.println("\n All Students:");
                     List<Student> students = dao.getStudents();
 
                     if (students.isEmpty()) {
@@ -45,7 +45,7 @@ public class Main {
                 }
 
                 case 2: {
-                    System.out.print("\nEnter Roll Number to search: ");
+                    System.out.print("\n Enter Roll Number to search: ");
                     int roll = readInt(sc);
 
                     Student found = dao.findByRollNumber(roll);
@@ -64,7 +64,7 @@ public class Main {
                     int id = readInt(sc);
 
                     if (dao.findByRollNumber(id) != null) {
-                        System.out.println("⚠️  A student with Roll Number " + id + " already exists.");
+                        System.out.println(" A student with Roll Number " + id + " already exists.");
                         break;
                     }
 
@@ -75,7 +75,7 @@ public class Main {
                     int age = readInt(sc);
 
                     if (age < 15 || age > 60) {
-                        System.out.println("⚠️  Age must be between 15 and 60.");
+                        System.out.println(" Age must be between 15 and 60.");
                         break;
                     }
                     System.out.print("  Enter Course Name : ");
@@ -119,12 +119,12 @@ public class Main {
                         try {
                             int newAge = Integer.parseInt(ageStr);
                             if (newAge < 15 || newAge > 60) {
-                                System.out.println("⚠️  Age must be 15-60. Keeping original.");
+                                System.out.println(" Age must be 15-60. Keeping original.");
                             } else {
                                 existing.setAge(newAge);
                             }
                         } catch (NumberFormatException e) {
-                            System.out.println("⚠️  Invalid age entered. Keeping original.");
+                            System.out.println(" Invalid age entered. Keeping original.");
                         }
                     }
 
@@ -174,7 +174,7 @@ public class Main {
                 }
 
                 case 6: {
-                    System.out.println("\n🔍  Search Students by Name:");
+                    System.out.println("\n  Search Students by Name:");
                     System.out.print("  Enter name keyword: ");
                     String keyword = sc.nextLine().trim();
 
@@ -192,7 +192,7 @@ public class Main {
                 }
 
                 case 7: {
-                    System.out.println("\n📊  Sort Students:");
+                    System.out.println("\n  Sort Students:");
                     System.out.println("  1. Sort by Name");
                     System.out.println("  2. Sort by Age");
                     System.out.print("  Choose sort option: ");
@@ -215,7 +215,7 @@ public class Main {
 
                 case 8: {
                     System.out.println("\n  Goodbye! Shutting down...");
-                    HibernateUtil.shutdown();   // close the SessionFactory cleanly
+                    HibernateUtil.shutdown();
                     sc.close();
                     System.exit(0);
                     break;
