@@ -5,6 +5,7 @@ import com.sms.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class StudentDao {
             return Collections.emptyList();
         }
     }
+
     public Student findByRollNumber(int rollNumber) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Student student = session.get(Student.class, rollNumber);
@@ -31,6 +33,7 @@ public class StudentDao {
             return null;
         }
     }
+
     public boolean addStudent(Student student) {
         Transaction transaction = null;
 
@@ -49,7 +52,9 @@ public class StudentDao {
         }
 
     }
-    public boolean updateStudent(Student student) {Transaction transaction = null;
+
+    public boolean updateStudent(Student student) {
+        Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.merge(student);
@@ -58,12 +63,15 @@ public class StudentDao {
 
         } catch (Exception e) {
             if (transaction != null) {
-                transaction.rollback();}
+                transaction.rollback();
+            }
             System.err.println("Error updating student: " + e.getMessage());
             return false;
         }
     }
-    public boolean deleteStudent(int rollNumber) {Transaction transaction = null;
+
+    public boolean deleteStudent(int rollNumber) {
+        Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             Student student = session.get(Student.class, rollNumber);
@@ -83,6 +91,7 @@ public class StudentDao {
             return false;
         }
     }
+
     public List<Student> searchByName(String keyword) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             String hql = "FROM Student WHERE lower(name) LIKE :keyword";

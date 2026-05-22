@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Table(name = "sms")
 public class Student {
     @Id
-    @Column(name = "rollNumber")   // primary key column in DB
+    @Column(name = "rollNumber")
     private int id;
 
     @Column(name = "name", nullable = false, length = 100)
@@ -20,14 +20,20 @@ public class Student {
 
     @Column(name = "courseName", length = 100)
     private String courseName;
-    public Student() {}
+
+    public Student() {
+    }
+
     public Student(int id, String name, int age, String courseName) {
-        this.id         = id;
-        this.name       = name;
-        this.age        = age;
+        this.id = id;
+        this.name = name;
+        this.age = age;
         this.courseName = courseName;
     }
-    public int getId() { return id; }
+
+    public int getId() {
+        return id;
+    }
 
     public void setId(int id) {
         this.id = id;
